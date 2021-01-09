@@ -14,10 +14,10 @@ var onlyNumeric = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 function generatePassword() {
 
 
-    //this function generates the prompts and user values for password
+    //this function generates the prompts and user values for the password
     function generateInputs() {
 
-        //prompt and create variable for user input for character length
+        //prompt and create variable for user input for character length - will also convert the input to and integer
 
         var length = parseInt(prompt("How many characters would you like your password to contain? Choose between 8 and 128"));
 
@@ -43,12 +43,11 @@ function generatePassword() {
         //prompt user for uppercase characters
         var shouldIncludeUppercase = confirm("Do you want to include uppercase characters?");
 
-        //alert users if they did not select one of the above for their password
+        //alert users if they did not select one of the above for their password and ends function so they can re-enter
         if (!shouldIncludeLowercase && !shouldIncludeUppercase && !shouldIncludeNumeric && !shouldIncludeSpecialCharacters) {
             alert("Your password must contain at least one special, numeric, lowercase, or uppercase character");
             return;
         }
-
 
         var questionOptions = {
             length: length,
@@ -57,7 +56,7 @@ function generatePassword() {
             lowerCase: shouldIncludeLowercase,
             upperCase: shouldIncludeUppercase
         };
-
+        // stops the generateinputs function and returns the questionOptions based on user input
         return questionOptions;
 
     }
@@ -91,6 +90,18 @@ function generatePassword() {
 
     var finalPassword = [];
 
+    for (let i = 0; i < options.length; ++i) {
+        var randomizer = Math.floor(Math.random() * Math.floor(passwordPool.length));
+        finalPassword.push(passwordPool[randomizer]);
+    }
+
+    console.log(finalPassword);
+
+    var superFinal = finalPassword.join('');
+    console.log(superFinal);
+
+    //displays the final password in the password element 
+    document.getElementById("password").textContent = superFinal;
 }
 
 // listens for user to click the button and then starts the generatePassword funtion
