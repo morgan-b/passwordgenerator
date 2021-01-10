@@ -21,16 +21,19 @@ function generatePassword() {
 
         var length = parseInt(prompt("How many characters would you like your password to contain? Choose between 8 and 128"));
 
-        //alerts user if they have entered a number less than 8 or more than 128
+        //alerts user if they have entered a number less than 8 or more than 128 or null
         if (length < 8) {
             alert('The password must be at least 8 characters!');
-            return;
+            return; //break out of function
         }
         if (length > 128) {
             alert('The password must be less than 128 characters!');
-            return;
+            return; //break out of function
         }
-
+        if (length === "null" || length === null || length === undefined || length === NaN || length === "0" || length === "") {
+            alert('The password must contain a length');
+            return; //break out of function
+        }
         //prompt user for special characters
         var shouldIncludeSpecialCharacters = confirm("Do you want to include special characters?");
 
