@@ -43,12 +43,12 @@ The following image shows the web application's appearance.
 
 ![password generator demo](./Assets/03-javascript-homework-demo.png)
 
-# # Credits
+## Credits
 
 The HTML and CSS exercise was provided by Triology Education Services, a 2U, Inc. brand
 - - -
 © 2020 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
 
-# # License
+## License
 
 MIT License Copyright (c) 2020 Morgan Bailey
