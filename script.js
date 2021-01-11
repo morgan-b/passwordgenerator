@@ -7,7 +7,7 @@ let generatePasswordButton = document.getElementById("generate");
 
 let onlyUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 let onlyLower = "abcdefghijklmnopqrstuvwyxz".split("");
-let onlySpecial = ['#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '['];
+let onlySpecial = "#$%&()*+,-.,/:;<=>?@[".split("");
 let onlyNumeric = "0123456789".split("");
 
 // Creates variable for passwordPool used to generate a final password
