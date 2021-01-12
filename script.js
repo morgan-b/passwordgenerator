@@ -10,9 +10,6 @@ let onlyLower = "abcdefghijklmnopqrstuvwyxz".split("");
 let onlySpecial = "#$%&()*+,-.,/:;<=>?@[".split("");
 let onlyNumeric = "0123456789".split("");
 
-// Creates variable for passwordPool used to generate a final password
-let passwordPool = [];
-
 //Generate password function
 function generatePassword() {
     let passwordLength = parseInt(prompt("How many characters would you like your password to contain? Choose between 8 and 128"));
@@ -30,6 +27,7 @@ function generatePassword() {
         alert('The password must have a number between 8 and 128');
         return; //break out of function
     }
+    console.log(passwordLength);
     //prompt user for special characters, numbers, lowercase and uppercase letters
     let shouldIncludeSpecialCharacters = confirm("Do you want to include special characters?");
     let shouldIncludeNumeric = confirm("Do you want to include numeric characters?");
@@ -42,6 +40,30 @@ function generatePassword() {
         alert("Your password must contain at least one special, numeric, lowercase, or uppercase character");
         return;
     }
+
+    //create variable to ensure one of each user input is elected and if states to run through inputs and choose character
+    let includePassword = [];
+
+    function setCharacters(userOption, array) {
+        if (userOption) {
+            let includeChar = array[(Math.floor(Math.random() * array.length))];
+            includePassword.push(includeChar);
+            passwordLength--;
+            console.log(includePassword);
+        }
+    }
+
+    //call function to check the user inputs for each character type and select a character if true
+    setCharacters(shouldIncludeSpecialCharacters, onlySpecial);
+    setCharacters(shouldIncludeNumeric, onlyNumeric);
+    setCharacters(shouldIncludeLowercase, onlyLower);
+    setCharacters(shouldIncludeUppercase, onlyUpper);
+
+    //remove "," from array to prepare to add on the remainder of the randomized password
+    let finalPassword = includePassword.join("");
+
+    //create variable for remainder of password characters
+    let passwordPool = [];
 
     //function to loop and check the user inputs
     function checkOptions(userOption, array) {
@@ -58,16 +80,18 @@ function generatePassword() {
     checkOptions(shouldIncludeLowercase, onlyLower);
     checkOptions(shouldIncludeUppercase, onlyUpper);
 
-    let finalPassword = "";
-
     //randomizes password based on inputs and length
     for (let i = 0; i < passwordLength; ++i) {
         let randomizer = Math.floor(Math.random() * Math.floor(passwordPool.length));
         finalPassword += passwordPool[randomizer];
-    }
+        console.log(finalPassword);
+    };
+
+
 
     //displays the final password in the password element 
     document.getElementById("password").textContent = finalPassword;
+
 }
 
 
